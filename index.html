@@ -1,7 +1,755 @@
-<!DOCTYPE html>
-<html>
-<body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
-</body>
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <style>
+        #map {
+            width: 958px;
+            height: 843px;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/multi-style-layer.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="data/Montreal_Island_0.js"></script>
+        <script src="data/IslandRoads_1.js"></script>
+        <script src="data/path7_2.js"></script>
+        <script src="data/path6_3.js"></script>
+        <script src="data/path5_4.js"></script>
+        <script src="data/path4_5.js"></script>
+        <script src="data/path3_6.js"></script>
+        <script src="data/path2_7.js"></script>
+        <script src="data/path1_8.js"></script>
+        <script src="data/hub4_9.js"></script>
+        <script src="data/hub3_10.js"></script>
+        <script src="data/hub2_11.js"></script>
+        <script src="data/hub1_12.js"></script>
+        <script src="data/justnames_13.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        })
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+            if (bounds_group.getLayers().length) {
+                map.fitBounds(bounds_group.getBounds());
+            }
+        }
+        function pop_Montreal_Island_0(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CTUID'] !== null ? autolinker.link(feature.properties['CTUID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CTNAME'] !== null ? autolinker.link(feature.properties['CTNAME'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['PRUID'] !== null ? autolinker.link(feature.properties['PRUID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['PRNAME'] !== null ? autolinker.link(feature.properties['PRNAME'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CMAUID'] !== null ? autolinker.link(feature.properties['CMAUID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CMAPUID'] !== null ? autolinker.link(feature.properties['CMAPUID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CMANAME'] !== null ? autolinker.link(feature.properties['CMANAME'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CMATYPE'] !== null ? autolinker.link(feature.properties['CMATYPE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Montreal_Island_0_0() {
+            return {
+                pane: 'pane_Montreal_Island_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(31,189,120,0.5372549019607843)',
+                interactive: false,
+            }
+        }
+        map.createPane('pane_Montreal_Island_0');
+        map.getPane('pane_Montreal_Island_0').style.zIndex = 400;
+        map.getPane('pane_Montreal_Island_0').style['mix-blend-mode'] = 'normal';
+        var layer_Montreal_Island_0 = new L.geoJson(json_Montreal_Island_0, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_Montreal_Island_0',
+            layerName: 'layer_Montreal_Island_0',
+            pane: 'pane_Montreal_Island_0',
+            onEachFeature: pop_Montreal_Island_0,
+            style: style_Montreal_Island_0_0,
+        });
+        bounds_group.addLayer(layer_Montreal_Island_0);
+        map.addLayer(layer_Montreal_Island_0);
+        function pop_IslandRoads_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['OBJECTID'] !== null ? autolinker.link(feature.properties['OBJECTID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['osm_id2'] !== null ? autolinker.link(feature.properties['osm_id2'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['access'] !== null ? autolinker.link(feature.properties['access'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['bicycle'] !== null ? autolinker.link(feature.properties['bicycle'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['bridge'] !== null ? autolinker.link(feature.properties['bridge'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['bus'] !== null ? autolinker.link(feature.properties['bus'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['crossing'] !== null ? autolinker.link(feature.properties['crossing'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['foot'] !== null ? autolinker.link(feature.properties['foot'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['footway'] !== null ? autolinker.link(feature.properties['footway'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['highway'] !== null ? autolinker.link(feature.properties['highway'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['layer'] !== null ? autolinker.link(feature.properties['layer'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['name'] !== null ? autolinker.link(feature.properties['name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['oneway'] !== null ? autolinker.link(feature.properties['oneway'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['public_transport'] !== null ? autolinker.link(feature.properties['public_transport'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['service'] !== null ? autolinker.link(feature.properties['service'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['surface'] !== null ? autolinker.link(feature.properties['surface'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['tracktype'] !== null ? autolinker.link(feature.properties['tracktype'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['width'] !== null ? autolinker.link(feature.properties['width'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Shape_Length'] !== null ? autolinker.link(feature.properties['Shape_Length'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_IslandRoads_1_0() {
+            return {
+                pane: 'pane_IslandRoads_1',
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 1.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+        }
+        map.createPane('pane_IslandRoads_1');
+        map.getPane('pane_IslandRoads_1').style.zIndex = 401;
+        map.getPane('pane_IslandRoads_1').style['mix-blend-mode'] = 'normal';
+        var layer_IslandRoads_1 = new L.geoJson(json_IslandRoads_1, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_IslandRoads_1',
+            layerName: 'layer_IslandRoads_1',
+            pane: 'pane_IslandRoads_1',
+            onEachFeature: pop_IslandRoads_1,
+            style: style_IslandRoads_1_0,
+        });
+        bounds_group.addLayer(layer_IslandRoads_1);
+        map.addLayer(layer_IslandRoads_1);
+        function pop_path7_2(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_path7_2_0() {
+            return {
+                pane: 'pane_path7_2',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 8.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+        }
+        function style_path7_2_1() {
+            return {
+                pane: 'pane_path7_2',
+                opacity: 1,
+                color: 'rgba(248,255,17,1.0)',
+                dashArray: '',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 6.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+        }
+        map.createPane('pane_path7_2');
+        map.getPane('pane_path7_2').style.zIndex = 402;
+        map.getPane('pane_path7_2').style['mix-blend-mode'] = 'normal';
+        var layer_path7_2 = new L.geoJson.multiStyle(json_path7_2, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_path7_2',
+            layerName: 'layer_path7_2',
+            pane: 'pane_path7_2',
+            onEachFeature: pop_path7_2,
+            styles: [style_path7_2_0,style_path7_2_1,]
+        });
+        bounds_group.addLayer(layer_path7_2);
+        map.addLayer(layer_path7_2);
+        function pop_path6_3(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_path6_3_0() {
+            return {
+                pane: 'pane_path6_3',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 8.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+        }
+        function style_path6_3_1() {
+            return {
+                pane: 'pane_path6_3',
+                opacity: 1,
+                color: 'rgba(32,17,255,1.0)',
+                dashArray: '',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 6.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+        }
+        map.createPane('pane_path6_3');
+        map.getPane('pane_path6_3').style.zIndex = 403;
+        map.getPane('pane_path6_3').style['mix-blend-mode'] = 'normal';
+        var layer_path6_3 = new L.geoJson.multiStyle(json_path6_3, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_path6_3',
+            layerName: 'layer_path6_3',
+            pane: 'pane_path6_3',
+            onEachFeature: pop_path6_3,
+            styles: [style_path6_3_0,style_path6_3_1,]
+        });
+        bounds_group.addLayer(layer_path6_3);
+        map.addLayer(layer_path6_3);
+        function pop_path5_4(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_path5_4_0() {
+            return {
+                pane: 'pane_path5_4',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 8.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+        }
+        function style_path5_4_1() {
+            return {
+                pane: 'pane_path5_4',
+                opacity: 1,
+                color: 'rgba(17,36,255,1.0)',
+                dashArray: '',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 6.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+        }
+        map.createPane('pane_path5_4');
+        map.getPane('pane_path5_4').style.zIndex = 404;
+        map.getPane('pane_path5_4').style['mix-blend-mode'] = 'normal';
+        var layer_path5_4 = new L.geoJson.multiStyle(json_path5_4, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_path5_4',
+            layerName: 'layer_path5_4',
+            pane: 'pane_path5_4',
+            onEachFeature: pop_path5_4,
+            styles: [style_path5_4_0,style_path5_4_1,]
+        });
+        bounds_group.addLayer(layer_path5_4);
+        map.addLayer(layer_path5_4);
+        function pop_path4_5(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_path4_5_0() {
+            return {
+                pane: 'pane_path4_5',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 8.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+        }
+        function style_path4_5_1() {
+            return {
+                pane: 'pane_path4_5',
+                opacity: 1,
+                color: 'rgba(17,255,64,1.0)',
+                dashArray: '',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 6.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+        }
+        map.createPane('pane_path4_5');
+        map.getPane('pane_path4_5').style.zIndex = 405;
+        map.getPane('pane_path4_5').style['mix-blend-mode'] = 'normal';
+        var layer_path4_5 = new L.geoJson.multiStyle(json_path4_5, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_path4_5',
+            layerName: 'layer_path4_5',
+            pane: 'pane_path4_5',
+            onEachFeature: pop_path4_5,
+            styles: [style_path4_5_0,style_path4_5_1,]
+        });
+        bounds_group.addLayer(layer_path4_5);
+        map.addLayer(layer_path4_5);
+        function pop_path3_6(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_path3_6_0() {
+            return {
+                pane: 'pane_path3_6',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 8.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+        }
+        function style_path3_6_1() {
+            return {
+                pane: 'pane_path3_6',
+                opacity: 1,
+                color: 'rgba(21,255,17,1.0)',
+                dashArray: '',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 6.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+        }
+        map.createPane('pane_path3_6');
+        map.getPane('pane_path3_6').style.zIndex = 406;
+        map.getPane('pane_path3_6').style['mix-blend-mode'] = 'normal';
+        var layer_path3_6 = new L.geoJson.multiStyle(json_path3_6, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_path3_6',
+            layerName: 'layer_path3_6',
+            pane: 'pane_path3_6',
+            onEachFeature: pop_path3_6,
+            styles: [style_path3_6_0,style_path3_6_1,]
+        });
+        bounds_group.addLayer(layer_path3_6);
+        map.addLayer(layer_path3_6);
+        function pop_path2_7(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_path2_7_0() {
+            return {
+                pane: 'pane_path2_7',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 8.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+        }
+        function style_path2_7_1() {
+            return {
+                pane: 'pane_path2_7',
+                opacity: 1,
+                color: 'rgba(255,144,17,1.0)',
+                dashArray: '',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 6.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+        }
+        map.createPane('pane_path2_7');
+        map.getPane('pane_path2_7').style.zIndex = 407;
+        map.getPane('pane_path2_7').style['mix-blend-mode'] = 'normal';
+        var layer_path2_7 = new L.geoJson.multiStyle(json_path2_7, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_path2_7',
+            layerName: 'layer_path2_7',
+            pane: 'pane_path2_7',
+            onEachFeature: pop_path2_7,
+            styles: [style_path2_7_0,style_path2_7_1,]
+        });
+        bounds_group.addLayer(layer_path2_7);
+        map.addLayer(layer_path2_7);
+        function pop_path1_8(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_path1_8_0() {
+            return {
+                pane: 'pane_path1_8',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 8.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+        }
+        function style_path1_8_1() {
+            return {
+                pane: 'pane_path1_8',
+                opacity: 1,
+                color: 'rgba(255,96,17,1.0)',
+                dashArray: '',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 6.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+        }
+        map.createPane('pane_path1_8');
+        map.getPane('pane_path1_8').style.zIndex = 408;
+        map.getPane('pane_path1_8').style['mix-blend-mode'] = 'normal';
+        var layer_path1_8 = new L.geoJson.multiStyle(json_path1_8, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_path1_8',
+            layerName: 'layer_path1_8',
+            pane: 'pane_path1_8',
+            onEachFeature: pop_path1_8,
+            styles: [style_path1_8_0,style_path1_8_1,]
+        });
+        bounds_group.addLayer(layer_path1_8);
+        map.addLayer(layer_path1_8);
+        function pop_hub4_9(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_hub4_9_0() {
+            return {
+                pane: 'pane_hub4_9',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(190,207,80,1.0)',
+                interactive: false,
+            }
+        }
+        map.createPane('pane_hub4_9');
+        map.getPane('pane_hub4_9').style.zIndex = 409;
+        map.getPane('pane_hub4_9').style['mix-blend-mode'] = 'normal';
+        var layer_hub4_9 = new L.geoJson(json_hub4_9, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_hub4_9',
+            layerName: 'layer_hub4_9',
+            pane: 'pane_hub4_9',
+            onEachFeature: pop_hub4_9,
+            style: style_hub4_9_0,
+        });
+        bounds_group.addLayer(layer_hub4_9);
+        map.addLayer(layer_hub4_9);
+        function pop_hub3_10(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_hub3_10_0() {
+            return {
+                pane: 'pane_hub3_10',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(152,125,183,1.0)',
+                interactive: false,
+            }
+        }
+        map.createPane('pane_hub3_10');
+        map.getPane('pane_hub3_10').style.zIndex = 410;
+        map.getPane('pane_hub3_10').style['mix-blend-mode'] = 'normal';
+        var layer_hub3_10 = new L.geoJson(json_hub3_10, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_hub3_10',
+            layerName: 'layer_hub3_10',
+            pane: 'pane_hub3_10',
+            onEachFeature: pop_hub3_10,
+            style: style_hub3_10_0,
+        });
+        bounds_group.addLayer(layer_hub3_10);
+        map.addLayer(layer_hub3_10);
+        function pop_hub2_11(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_hub2_11_0() {
+            return {
+                pane: 'pane_hub2_11',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(231,113,72,1.0)',
+                interactive: false,
+            }
+        }
+        map.createPane('pane_hub2_11');
+        map.getPane('pane_hub2_11').style.zIndex = 411;
+        map.getPane('pane_hub2_11').style['mix-blend-mode'] = 'normal';
+        var layer_hub2_11 = new L.geoJson(json_hub2_11, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_hub2_11',
+            layerName: 'layer_hub2_11',
+            pane: 'pane_hub2_11',
+            onEachFeature: pop_hub2_11,
+            style: style_hub2_11_0,
+        });
+        bounds_group.addLayer(layer_hub2_11);
+        map.addLayer(layer_hub2_11);
+        function pop_hub1_12(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_hub1_12_0() {
+            return {
+                pane: 'pane_hub1_12',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(228,26,28,1.0)',
+                interactive: false,
+            }
+        }
+        map.createPane('pane_hub1_12');
+        map.getPane('pane_hub1_12').style.zIndex = 412;
+        map.getPane('pane_hub1_12').style['mix-blend-mode'] = 'normal';
+        var layer_hub1_12 = new L.geoJson(json_hub1_12, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_hub1_12',
+            layerName: 'layer_hub1_12',
+            pane: 'pane_hub1_12',
+            onEachFeature: pop_hub1_12,
+            style: style_hub1_12_0,
+        });
+        bounds_group.addLayer(layer_hub1_12);
+        map.addLayer(layer_hub1_12);
+        function pop_justnames_13(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>name</strong><br />' + (feature.properties['name'] !== null ? autolinker.link(feature.properties['name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">id</th>\
+                        <td>' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_justnames_13_0() {
+            return {
+                pane: 'pane_justnames_13',
+                radius: 8.399999999999999,
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,0,0,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_justnames_13');
+        map.getPane('pane_justnames_13').style.zIndex = 413;
+        map.getPane('pane_justnames_13').style['mix-blend-mode'] = 'normal';
+        var layer_justnames_13 = new L.geoJson(json_justnames_13, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_justnames_13',
+            layerName: 'layer_justnames_13',
+            pane: 'pane_justnames_13',
+            onEachFeature: pop_justnames_13,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_justnames_13_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_justnames_13);
+        map.addLayer(layer_justnames_13);
+        setBounds();
+        </script>
+    </body>
 </html>
