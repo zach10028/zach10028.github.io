@@ -1,0 +1,125 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>MTL Then & Now</title>
+  <link rel="stylesheet" href="./libs/v6.0.0-dist/ol.css">
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+  <script src="https://kit.fontawesome.com/c78f55289a.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div class="grid-container">
+    <div class="grid-1">
+      <div class="column-navigation">
+        <a title='Home' id='Home' class='active'><i class="fas fa-home" id='Home'></i></a>
+        <a title='POI' id='2'><i class="far fa-circle" id='POI'></i></a>
+        <a title='POI' id='58'><i class="far fa-circle" id='POI'></i></a>
+        <a title='POI' id='61'><i class="far fa-circle" id='POI'></i></a>
+        <a title='POI' id='60'><i class="far fa-circle" id='POI'></i></a>
+        <a title='POI' id='50'><i class="far fa-circle" id='POI'></i></a>
+        <a title='POI' id='51'><i class="far fa-circle" id='POI'></i></a>
+        <a title='POI' id='57'><i class="far fa-circle" id='POI'></i></a>
+        <a title='POI' id='53'><i class="far fa-circle" id='POI'></i></a>
+        <a title='POI' id='33'><i class="far fa-circle" id='POI'></i></a>
+        <a title='POI' id='35'><i class="far fa-circle" id='POI'></i></a>
+        <a title='POI' id='55'><i class="far fa-circle" id='POI'></i></a>
+        <a title='POI' id='63'><i class="far fa-circle" id='POI'></i></a>
+        <a title='POI' id='64'><i class="far fa-circle" id='POI'></i></a>
+        <a title='POI' id='69'><i class="far fa-circle" id='POI'></i></a>
+        <a title='POI' id='67'><i class="far fa-circle" id='POI'></i></a>
+        <a title='POI' id='65'><i class="far fa-circle" id='POI'></i></a>
+        <a title='POI' id='70'><i class="far fa-circle" id='POI'></i></a>
+        <a title='POI' id='52'><i class="far fa-circle" id='POI'></i></a>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="column-map" id='openlayers-map'></div>     
+    </div>
+
+    <div class="grid-3">
+      <div class="column-menu" id='menu-information'>
+
+        <p id='POIname'>Click on a marker and see how the location has changed with time</p>
+
+        <div class="slide-container">
+          <div class="slide fade">
+           <img src='data/static_image/logo.png' alt='' id = 'POIimage'>
+           <p id = 'POIdesc1'></p>
+           <p id = 'POIyear1'></p>
+         </div>
+         <div class="slide fade">
+           <img src='' alt='' id = 'POIimage2'>
+           <p id = 'POIdesc2'></p>
+           <p id = 'POIyear2'></p>
+         </div>
+         <div class="slide fade">
+           <img src='' alt='' id = 'POIimage3'>
+           <p id = 'POIdesc3'></p>
+           <p id = 'POIyear3'></p>           
+         </div>
+   
+         <a href="#" class="prev" title="Previous">&#10094</a>
+         <a href="#" class="next" title="Next">&#10095</a>
+       </div>
+       <div class="dots-container">
+         <span class="dot"></span>
+         <span class="dot"></span>
+         <span class="dot"></span>
+       </div>
+
+
+      </div>
+  
+  <div class="column-map" id='openlayers-map'></div>
+  <script src='./libs/v6.0.0-dist/ol.js'></script>
+  <script src='./main.js'></script>
+  <script src = './libs/proj4js/proj4.js'></script>
+  <script src = './libs/proj4js/proj4-src.js'></script>
+  <script>
+    var currentSlide = 0;
+    const slides = document.querySelectorAll(".slide")
+    const dots = document.querySelectorAll('.dot')
+
+    const init2 = (n) => {
+      slides.forEach((slide) => {
+        slide.style.display = "none"
+        dots.forEach((dot) => {
+          dot.classList.remove("active")
+        })
+      })
+      slides[n].style.display = "block"
+      dots[n].classList.add("active")
+    }
+    document.addEventListener("DOMContentLoaded", init2(currentSlide))
+
+    const next = () => {
+        currentSlide >= slides.length - 1 ? currentSlide = 0 : currentSlide++
+        init2(currentSlide)
+      }
+      
+    const prev = () => {
+        currentSlide <= 0 ? currentSlide = slides.length - 1 : currentSlide--
+        init2(currentSlide)
+      }
+      
+    document.querySelector(".next").addEventListener('click', next)
+    document.querySelector(".prev").addEventListener('click', prev)
+
+    i =currentSlide;
+      
+    dots.forEach((dot, index) => {
+        dot.addEventListener("click", () => {
+          init2(index)
+          currentSlide = i
+        })
+      })
+  </script>
+</body>
+
+</html>
